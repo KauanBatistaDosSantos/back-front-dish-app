@@ -3,11 +3,14 @@ package com.ibeus.Comanda.Digital.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "pedidos")
 @Data
@@ -21,9 +24,9 @@ public class Pedido {
     private String status;
 
     private String data;
-    @OneToOne
-    @JoinColumn(name="cliente_id",
-    referencedColumnName = "id")
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="cliente_id", referencedColumnName = "id")
     private Cliente cliente;
     
     @ManyToOne
@@ -42,4 +45,5 @@ public class Pedido {
 
     private String observacao;
 
+    private Integer tempoEstimado;
 }

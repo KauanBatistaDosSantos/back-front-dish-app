@@ -58,6 +58,10 @@ public class DishService {
         return dishRepository.findByCategory(category);
     }
 
+    public Long getNextId() {
+        Dish lastDish = dishRepository.findTopByOrderByIdDesc(); // Busca o prato com o maior ID
+        return lastDish != null ? lastDish.getId() + 1 : 1L; // Incrementa o ID ou retorna 1 se nenhum prato existir
+    }
 //    public Dish diminuirQuantidade(Long id, int valor) {
 //        Dish dish = findById(id);
 ////        if (dish.getQuantity() - valor < 0) {

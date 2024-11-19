@@ -61,5 +61,14 @@ public class ClienteService {
         pedidoRepository.save(pedido);
     }
 
+    public Cliente buscarOuCriarCliente(Cliente clienteInfo) {
+        // Busca o cliente pelo CPF
+        return clienteRepository.findByCpf(clienteInfo.getCpf())
+                .orElseGet(() -> clienteRepository.save(clienteInfo)); // Cria o cliente, se não existir
+    }
 
+    public Cliente buscarPorCpf(String cpf) {
+        return clienteRepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+    }
  }

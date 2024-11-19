@@ -16,4 +16,5 @@ public class Motoboy {
     private String nome;
     private String endereco;
     private String cpf;
+    private Integer status;
 }

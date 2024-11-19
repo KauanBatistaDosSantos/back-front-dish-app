@@ -40,4 +40,23 @@ public class MotoboyService {
         pedidoRepository.save(pedido);
     }
 
+    public Motoboy atualizarMotoboy(Long id, Motoboy motoboyAtualizado) {
+        Motoboy motoboyExistente = motoboyRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Motoboy não encontrado."));
+
+        motoboyExistente.setNome(motoboyAtualizado.getNome());
+        motoboyExistente.setEndereco(motoboyAtualizado.getEndereco());
+        motoboyExistente.setCpf(motoboyAtualizado.getCpf());
+        motoboyExistente.setStatus(motoboyAtualizado.getStatus());
+
+        return motoboyRepository.save(motoboyExistente);
+    }
+
+    public void excluirMotoboy(Long id) {
+        if (motoboyRepository.existsById(id)) {
+            motoboyRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Motoboy não encontrado.");
+        }
+    }
 }

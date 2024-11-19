@@ -5,20 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ibeus.Comanda.Digital.model.Motoboy;
 import com.ibeus.Comanda.Digital.service.MotoboyService;
 
 @RestController
 @RequestMapping("/motoboy")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MotoboyController {
 
     @Autowired
@@ -45,5 +39,25 @@ public class MotoboyController {
     public ResponseEntity<String> finalizarEntrega(@RequestParam String cpfInicio) {
         motoboyService.finalizarEntrega(cpfInicio);
         return ResponseEntity.ok("Entrega finalizada com sucesso.");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Motoboy> atualizarMotoboy(@PathVariable Long id, @RequestBody Motoboy motoboy) {
+        try {
+            Motoboy motoboyAtualizado = motoboyService.atualizarMotoboy(id, motoboy);
+            return ResponseEntity.ok(motoboyAtualizado);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> excluirMotoboy(@PathVariable Long id) {
+        try {
+            motoboyService.excluirMotoboy(id);
+            return ResponseEntity.ok("Motoboy excluído com sucesso.");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erro ao excluir o motoboy: " + e.getMessage());
+        }
     }
 }

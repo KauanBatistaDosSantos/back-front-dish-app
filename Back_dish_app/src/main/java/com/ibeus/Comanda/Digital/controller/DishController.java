@@ -58,4 +58,9 @@ public class DishController {
         dishService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/nextId")
+    public Long getNextId() {
+        return dishService.getNextId(); // Chama o método do service
+    }
 }
