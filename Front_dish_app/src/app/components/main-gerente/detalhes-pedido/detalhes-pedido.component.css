@@ -1,0 +1,118 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px 24px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  #botao-seta-voltar {
+    position: absolute;
+    left: 24px;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--branco-figma);
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 600px;
+    background: #2b2d3a;
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  ul > li {
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #444;
+  }
+  
+  ul > li:last-child {
+    border-bottom: none;
+  }
+  
+  li strong {
+    font-weight: bold;
+    color: #ff9900;
+  }
+  
+  ul ul {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  ul ul > li {
+    margin-bottom: 8px;
+    padding: 0;
+    color: #bbbbbb;
+  }
+  
+  .loading,
+  .erro {
+    text-align: center;
+    font-size: 18px;
+    color: #ff0000;
+  }
+  
+  .loading {
+    color: #ff9900;
+  }
+  
+  button {
+    background-color: #ff9900;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #e57e00;
+  }
+  
+  @media (max-width: 460px) {
+    ul {
+      padding: 16px;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  
+    button {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+  }
+  

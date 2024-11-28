@@ -52,10 +52,10 @@ export class PedidoComponent implements OnInit {
   }
 
   verDetalhes(id: string) {
-    this.router.navigate(['/acompanhar-pedido', id]);
+    this.router.navigate(['/ver-detalhes', id]);
   }
 
   voltar() {
-    this.location.back();
+    this.router.navigate(['/gerencia']);
   }
 }

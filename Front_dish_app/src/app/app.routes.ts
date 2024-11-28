@@ -19,6 +19,7 @@ import { GerenciaComponent } from './components/gerencia/gerencia.component';
 import { CadastroEntregadorComponent } from './components/cadastro-entregador/cadastro-entregador.component';
 import { ListaEntregadoresComponent } from './components/lista-entregadores/lista-entregadores.component';
 import { PedidoComponent } from './components/main-gerente/pedido/pedido.component';
+import { DetalhesPedidoComponent } from './components/main-gerente/detalhes-pedido/detalhes-pedido.component';
 
 export const routes: Routes = [
     { path: '', component: InicioComponent},
@@ -49,5 +50,7 @@ export const routes: Routes = [
     { path: 'cadastro-entregadores/:id', component: CadastroEntregadorComponent },
     { path: 'lista-entregadores', component: ListaEntregadoresComponent},
 
-    { path: 'todos-os-pedidos', component: PedidoComponent}
+    { path: 'todos-os-pedidos', component: PedidoComponent},
+    { path: 'ver-detalhes/:id', component: DetalhesPedidoComponent}
+
 ];

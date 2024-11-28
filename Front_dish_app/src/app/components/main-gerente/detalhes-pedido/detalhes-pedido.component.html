@@ -1,0 +1,32 @@
+<div class="body">
+    <header>
+        <button id="botao-seta-voltar" (click)="voltar()"><mat-icon>arrow_back_ios</mat-icon></button>
+    </header>
+
+    <div *ngIf="loading">Carregando...</div>
+    <div *ngIf="!loading && !pedido">
+      <h1>ERRO</h1>
+      <p>Pedido não encontrado.</p>
+    </div>
+  
+    <div *ngIf="!loading && pedido">
+      <h1>Detalhes do Pedido</h1>
+      <ul>
+        <li><strong>ID:</strong> {{ pedido.id }}</li>
+        <li><strong>Cliente:</strong> {{ pedido.cliente.nome }}</li>
+        <li><strong>CPF:</strong> {{ pedido.cliente.cpf }}</li>
+        <li><strong>Endereço:</strong> {{ pedido.cliente.endereco }}</li>
+        <li><strong>Status:</strong> {{ pedido.status }}</li>
+        <li><strong>Preço Total:</strong> {{ pedido.precoTotal | currency:'BRL' }}</li>
+        <li>
+          <strong>Itens:</strong>
+          <ul>
+            <li *ngFor="let item of pedido.dish">
+              {{ item.name }} - {{ item.price | currency:'BRL' }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+</div>
+  
