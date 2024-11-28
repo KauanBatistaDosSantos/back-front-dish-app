@@ -26,7 +26,7 @@ public class Pedido {
     private String data;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="cliente_id", referencedColumnName = "id")
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
     private Cliente cliente;
     
     @ManyToOne

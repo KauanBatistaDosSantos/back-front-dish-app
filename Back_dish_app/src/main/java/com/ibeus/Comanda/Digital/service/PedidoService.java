@@ -61,6 +61,8 @@ public class PedidoService {
         Cliente cliente = clienteRepository.findById(pedido.getCliente().getId())
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado com o ID informado"));
 
+        pedido.setCliente(cliente);
+
         // Log para verificação
         System.out.println("Cliente encontrado: " + cliente);
 
