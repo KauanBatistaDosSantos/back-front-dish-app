@@ -20,6 +20,7 @@ export class TestePedidoComponent implements OnInit {
   loading = true;
   id: string | null = null;
   categoria: string | null = null;
+  quantidade = 1;
 
   constructor(
     private dishService: DishService,
@@ -34,7 +35,7 @@ export class TestePedidoComponent implements OnInit {
     this.categoria = this.route.snapshot.paramMap.get('categoria');
 
     if (this.id) {
-      this.dishService.getDish(this.id).subscribe( 
+      this.dishService.getDish(this.id).subscribe(
         data => {
           this.dish = data;
           this.loading = false;
@@ -50,10 +51,21 @@ export class TestePedidoComponent implements OnInit {
     }
   }
 
+  incrementarQuantidade(): void {
+    this.quantidade++;
+  }
+
+  decrementarQuantidade(): void {
+    if (this.quantidade > 1) {
+      this.quantidade--;
+    }
+  }
+
   addToCart(): void {
     if (this.dish) {
-      this.carrinhoService.addToCart(this.dish);
-      console.log('Prato adicionado ao carrinho (local):', this.dish);
+      const dishToCart = { ...this.dish, quantidade: this.quantidade };
+      this.carrinhoService.addToCart(dishToCart);
+      console.log('Prato adicionado ao carrinho:', dishToCart);
     } else {
       console.error('Prato não encontrado para adicionar ao carrinho');
     }
@@ -62,5 +74,5 @@ export class TestePedidoComponent implements OnInit {
 
   voltar() {
     this.location.back();
-   }
+  }
 }

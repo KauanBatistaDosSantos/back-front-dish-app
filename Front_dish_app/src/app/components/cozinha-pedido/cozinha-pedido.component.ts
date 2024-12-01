@@ -29,26 +29,6 @@ export class CozinhaPedidoComponent {
     }, 100);
   }
 
-  // finalizarPedido(id: number): void {
-  //   const dialogRef = this.dialog.open(DialogConfirmarFinalizacaoDoPedidoComponent);
-
-  //   dialogRef.afterClosed().subscribe((confirmado) => {
-  //     if (confirmado && this.pedido && this.pedido.id === id) {
-  //       this.pedido.status = 'aguardando entrega';
-  //       console.log('Finalizando pedido com ID:', id);
-
-  //       this.pedidoService.updatePedido(id, this.pedido).subscribe(() => {
-  //         console.log('Pedido atualizado com sucesso:', this.pedido);
-  //         setTimeout(() => {
-  //           window.location.reload(); 
-  //           }, 100);
-  //       }, (error) => {
-  //         console.error('Erro ao atualizar o pedido:', error);
-  //       });
-  //     }
-  //   });
-  // }
-
   finalizarPedido(id: number): void {
     const dialogRef = this.dialog.open(DialogConfirmarFinalizacaoDoPedidoComponent);
   
@@ -71,5 +51,23 @@ export class CozinhaPedidoComponent {
         });
       }
     });
+  }
+
+  getItensAgrupados(): { name: string; description: string; quantidade: number }[] {
+    const agrupados: { [key: string]: { name: string; description: string; quantidade: number } } = {};
+  
+    this.pedido.dish.forEach((item: any) => {
+      if (agrupados[item.name]) {
+        agrupados[item.name].quantidade += 1;
+      } else {
+        agrupados[item.name] = { 
+          name: item.name, 
+          description: item.description, 
+          quantidade: 1 
+        };
+      }
+    });
+  
+    return Object.values(agrupados);
   }
 }

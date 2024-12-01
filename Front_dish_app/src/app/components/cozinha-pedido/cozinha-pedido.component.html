@@ -12,8 +12,10 @@
     </div>
   </div>
   <div id="todos-os-pedidos">
-    <div class="detalhes-pedido" *ngFor="let item of pedido.dish">
-      <h3 class="texto-preto" id="titulo-h3">{{ item.name }}</h3>
+    <div class="detalhes-pedido" *ngFor="let item of getItensAgrupados()">
+      <h3 class="texto-preto" id="titulo-h3">
+        {{ item.name }} (x{{ item.quantidade }})
+      </h3>
       <p class="texto-cinza">{{ item.description }}</p>
     </div>
   </div>

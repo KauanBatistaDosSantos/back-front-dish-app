@@ -19,6 +19,12 @@
             <p class="preco">{{ dish.price | currency:'BRL' }}</p>
         </div>
 
+        <div id="quantidade">
+            <button (click)="decrementarQuantidade()">-</button>
+            <p>{{ quantidade }}</p>
+            <button (click)="incrementarQuantidade()">+</button>
+        </div>
+        
         <footer class="botao-rodape">
             <button (click)="addToCart()">Adicionar</button>
         </footer>

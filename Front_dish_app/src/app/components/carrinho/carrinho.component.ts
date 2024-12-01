@@ -15,7 +15,7 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './carrinho.component.css'
 })
 export class CarrinhoComponent implements OnInit {
-  cart: Dish[] = [];
+  cart: (Dish & { quantidade: number })[] = [];
   loading: boolean = true;
 
   constructor(
@@ -32,14 +32,28 @@ export class CarrinhoComponent implements OnInit {
   loadCartItems() {
     this.cart = this.carrinhoService.getCartItems();
   }
-  
-  removeFromCart(id: string) {
+
+  incrementarQuantidade(dish: Dish & { quantidade: number }): void {
+    this.carrinhoService.updateQuantity(dish.id, dish.quantidade + 1);
+    this.loadCartItems();
+  }
+
+  decrementarQuantidade(dish: Dish & { quantidade: number }): void {
+    if (dish.quantidade > 1) {
+      this.carrinhoService.updateQuantity(dish.id, dish.quantidade - 1);
+    } else {
+      this.removeFromCart(dish.id);
+    }
+    this.loadCartItems();
+  }
+
+  removeFromCart(id: string): void {
     this.carrinhoService.removeFromCart(id);
     this.loadCartItems();
   }
 
   get total(): number {
-    return this.cart.reduce((sum, dish) => sum + (dish.price || 0), 0);
+    return this.cart.reduce((sum, dish) => sum + (dish.price * dish.quantidade || 0), 0);
   }
 
   voltar() {

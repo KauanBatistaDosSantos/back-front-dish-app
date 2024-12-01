@@ -101,9 +101,9 @@ export class TelaClienteFinalizarPedidoComponent implements OnInit {
   }
 
   calcularTotal(): void {
-    this.subtotal = this.cartItems.reduce((sum, item) => sum + (item.price || 0), 0);
+    this.subtotal = this.cartItems.reduce((sum, item) => sum + ((item.price || 0) * (item.quantidade || 1)), 0);
     this.total = this.subtotal + this.taxaEntrega;
-  }
+}
 
   navegarParaOutroComponente() {
     if (this.isButtonEnabled) {
@@ -126,41 +126,52 @@ export class TelaClienteFinalizarPedidoComponent implements OnInit {
     }
 }
 
-  private criarPedido(clienteId: number): void {
-    const novoPedido = {
-      cliente:  { id: clienteId },
-      dish: this.cartItems,
+private criarPedido(clienteId: number): void {
+  const itensParaEnvio = this.cartItems.flatMap(item =>
+      Array(item.quantidade || 1).fill({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          description: item.description,
+          category: item.category,
+          stock: item.stock,
+      })
+  );
+
+  const novoPedido = {
+      cliente: { id: clienteId },
+      dish: itensParaEnvio,
       precoTotal: this.total,
       observacao: this.observacao,
       status: 'não aceito',
       data: new Date().toISOString(),
-    };
-    
-    console.log('Novo Pedido:', novoPedido);
-    this.pedidoService.fazerPedido(novoPedido).subscribe(
-      (pedidoCriado) => {
-        this.pedidoService.setCodigoConfirmacao(this.cpfSalvo, pedidoCriado.id);
-  
-        localStorage.setItem('pedidoId', pedidoCriado.id);
-        localStorage.setItem('codigoConfirmacao', this.pedidoService.getCodigoConfirmacao());
+  };
 
-        localStorage.removeItem('cartItems');
-        this.carrinhoService.clearCart();
-        localStorage.removeItem('nomeCliente');
-        localStorage.removeItem('cpfCliente');
-        localStorage.removeItem('enderecoCliente');
-        localStorage.removeItem('observacaoCliente');
-        
-        setTimeout(() => {
-          this.router.navigate(['/acompanhar-pedido']);
-        }, 100);
+  console.log('Novo Pedido:', novoPedido);
+  this.pedidoService.fazerPedido(novoPedido).subscribe(
+      (pedidoCriado) => {
+          this.pedidoService.setCodigoConfirmacao(this.cpfSalvo, pedidoCriado.id);
+
+          localStorage.setItem('pedidoId', pedidoCriado.id);
+          localStorage.setItem('codigoConfirmacao', this.pedidoService.getCodigoConfirmacao());
+
+          localStorage.removeItem('cartItems');
+          this.carrinhoService.clearCart();
+          localStorage.removeItem('nomeCliente');
+          localStorage.removeItem('cpfCliente');
+          localStorage.removeItem('enderecoCliente');
+          localStorage.removeItem('observacaoCliente');
+
+          setTimeout(() => {
+              this.router.navigate(['/acompanhar-pedido']);
+          }, 100);
       },
       (error) => {
-        console.error('Erro ao criar pedido:', error);
-        alert('Erro ao processar pedido. Tente novamente.');
+          console.error('Erro ao criar pedido:', error);
+          alert('Erro ao processar pedido. Tente novamente.');
       }
-    );
-  }
+  );
+}
 
   ajustarAltura(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;

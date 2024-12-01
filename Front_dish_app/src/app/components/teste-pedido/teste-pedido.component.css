@@ -76,3 +76,28 @@ footer.botao-rodape {
     width: fit-content;
     height: fit-content;
 }
+
+#quantidade {
+    display: flex;
+    align-items: center;
+    background-color: var(--laranja-figma);
+    width: 100px;
+    height: 50px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+#quantidade p {
+    font-size: 20px;
+}
+
+#quantidade button {
+    width: 40px;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

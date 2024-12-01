@@ -21,6 +21,8 @@ html, body {
     padding: 0;
     height: 100%;
     overflow-x: hidden;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 body {
@@ -71,21 +73,26 @@ body {
     display: flex;
     flex-direction: column; 
     font-size: 12px;
+    max-width: 250px;
 }
 
 
 .botao-item-cardapio {
-    line-height: 1.2; 
-    margin: 14px;
-    justify-content: space-between;
+    box-sizing: border-box;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
-    color: white;
-    border: 0;
-    padding: 10px 20px;
-    border-radius: 10px;
-    gap: 20px;
+.botao-item-cardapio .deletar {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    gap: 10px;
+    min-width: 70px;
 }
 
 .cardapio div {
@@ -114,7 +121,8 @@ body {
     height: 1px;
     background-color: #ccc;
     margin: auto;
-    width: 80%;
+    margin-bottom: 5px;
+    width: 100%;
 }
 
 h3 {
@@ -161,4 +169,53 @@ footer.botao-rodape {
     padding-top: 25px;
     color: #ffffff;
     cursor: pointer;
+}
+
+#quantidade {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--laranja-figma);
+    width: 100%;
+    max-width: 120px;
+    height: 45px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+#quantidade button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: var(--laranja-figma);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+#quantidade p {
+    margin: 0 10px;
+    font-size: 16px;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0 8px; /* Reduz o espaçamento lateral em telas pequenas */
+    }
+
+    .botao-item-cardapio {
+        flex-wrap: wrap; /* Permitir que os elementos quebrem linha se necessário */
+        gap: 10px; /* Reduz o espaço entre os elementos */
+    }
+
+    .deletar, #quantidade {
+        align-self: flex-start;
+    }
+
+    #finalizar-pedido {
+        width: 100%; /* O botão ocupa toda a largura em telas pequenas */
+    }
 }

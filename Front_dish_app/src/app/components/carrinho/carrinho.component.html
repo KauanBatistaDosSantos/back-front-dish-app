@@ -9,18 +9,24 @@
             <div class="botao-item-cardapio">
                 <div class="dish-nome">
                     <h2>{{ dish.name }}</h2>
-                    
                     <div class="dish-info">
                         <p class="dish-descricao">{{ dish.description }}</p>
-                        <p class="dish-preco">{{ dish.price | currency:'BRL' }}</p>
+                        <p class="dish-preco">{{ (dish.price * dish.quantidade) | currency:'BRL' }}</p>
                     </div>
                 </div>
-                <button (click)="removeFromCart(dish.id)" class="deletar">🗑️</button>
+                <div class="deletar">
+                    <button (click)="removeFromCart(dish.id)">🗑️</button>
+                    <div id="quantidade">
+                        <button (click)="decrementarQuantidade(dish)">-</button>
+                        <p>{{ dish.quantidade }}</p>
+                        <button (click)="incrementarQuantidade(dish)">+</button>
+                    </div>
+                </div>
             </div>
             <div *ngIf="!last" class="linha-separadora"></div>
         </div>
     </main>
-
+    
     <footer class="botao-rodape">
         <h3>Total: {{ total | currency:'BRL' }}</h3>
         <button id="finalizar-pedido" (click)="finalizar()" [disabled]="cart.length === 0">Finalizar</button>
