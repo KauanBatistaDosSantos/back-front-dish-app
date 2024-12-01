@@ -35,24 +35,40 @@ export class TelaInicialEntregadorComponent implements OnInit {
     if (nomeRota) {
       this.entregadorNome = this.formatarNome(nomeRota);
     }
-
+  
     this.buscarPedidoMaisAntigo();
+  
+    this.pedidoService.getPedidosAtualizados().subscribe(() => {
+      this.buscarPedidoMaisAntigo();
+    });
   }
 
-  abrirDialogNovoPedido(): void {
-    if (!this.mostrarPedido) {
-      const dialogRef = this.dialog.open(DialogEntregadorPedidoAtribuidoComponent);
-
-      dialogRef.afterClosed().subscribe(result => {
-        if (result === 'iniciar') {
-          this.mostrarPedido = true;
+  abrirDialogNovoPedido(pedidoId: number): void {
+    this.pedidoService.getPedidoById(pedidoId).subscribe(
+      (pedido) => {
+        if (pedido && pedido.status !== 'pedido finalizado') {
+          // Só abre o diálogo se o pedido não estiver finalizado
+          const dialogRef = this.dialog.open(DialogEntregadorPedidoAtribuidoComponent, {
+            data: { pedidoId },
+          });
+  
+          dialogRef.afterClosed().subscribe((result) => {
+            if (result === 'iniciar') {
+              this.mostrarPedido = true;
+            }
+          });
+        } else {
+          console.log('Pedido já finalizado. Nenhum diálogo será exibido.');
         }
-      });
-    }
+      },
+      (error) => {
+        console.error('Erro ao verificar o status do pedido:', error);
+      }
+    );
   }
 
   buscarPedidoMaisAntigo(): void {
-    const entregadorId = this.route.snapshot.paramMap.get('id'); // Obtém o ID do entregador da rota
+    const entregadorId = this.route.snapshot.paramMap.get('id');
     if (!entregadorId) {
       console.error('ID do entregador não encontrado na rota!');
       return;
@@ -61,11 +77,15 @@ export class TelaInicialEntregadorComponent implements OnInit {
     this.pedidoService.getPedidoMaisAntigoParaEntregador(+entregadorId).subscribe(
       (pedido) => {
         if (pedido) {
-          this.pedidoSelecionado = pedido;
-          console.log('Pedido selecionado:', this.pedidoSelecionado);
-          this.nome = true;
-          this.mostrarPedido = false;
-          this.abrirDialogNovoPedido();
+          if (pedido.status !== 'pedido finalizado') {
+            this.pedidoSelecionado = pedido;
+            console.log('Pedido selecionado:', this.pedidoSelecionado);
+            this.nome = true;
+            this.mostrarPedido = false;
+            this.abrirDialogNovoPedido(pedido.id);
+          } else {
+            console.log('Pedido já finalizado. Nenhum diálogo será aberto.');
+          }
         } else {
           console.log('Nenhum pedido encontrado para o entregador.');
           this.pedidoSelecionado = null;
@@ -81,15 +101,24 @@ export class TelaInicialEntregadorComponent implements OnInit {
   finalizarEntrega(): void {
     if (this.pedidoSelecionado) {
       const dialogRef = this.dialog.open(FinalizarEntregaComponent);
-      
+  
       dialogRef.componentInstance.entregaFinalizada.subscribe(() => {
-
-        this.buscarPedidoMaisAntigo();
+        // Chama o serviço para finalizar no backend
+        this.pedidoService.finalizarPedidoEntregador(this.pedidoSelecionado.id).subscribe({
+          next: () => {
+            console.log('Entrega finalizada no backend.');
+            // Atualiza a tela inicial buscando o próximo pedido
+            this.buscarPedidoMaisAntigo();
+          },
+          error: (err) => {
+            console.error('Erro ao finalizar a entrega no backend:', err);
+          }
+        });
       });
-
+  
       dialogRef.afterClosed().subscribe((result) => {
         if (result === 'entregaFinalizada') {
-          this.buscarPedidoMaisAntigo();
+          console.log('Diálogo fechado após finalizar entrega.');
         }
       });
     }

@@ -1,15 +1,32 @@
-<section>
+<section id="corpo">
   <header>
-    <button id="botao-seta-voltar" (click)="voltar()"><mat-icon>arrow_back_ios</mat-icon></button>
+    <button id="botao-seta-voltar" (click)="voltar()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <h1>GERÊNCIA</h1>
   </header>
 
-  <body>
-    <h1>Gerência</h1>
-      <div class="gerencia-container">
-        <button (click)="irParaCardapio()" class="botao-gerencia">Gerenciar cardápio</button>
-        <button (click)="irParaPedidos()" class="botao-gerencia">Gerenciar entregas</button>
-        <button (click)="irParaEntregadores()" class="botao-gerencia">Gerenciar entregadores</button>
-        <button (click)="irParaTodosOsPedidos()" class="botao-gerencia">Gerenciar pedidos</button>
-      </div>
-  </body>
+  <section>
+    <div class="gerencia-container">
+      <button class="botao_cardapio" (click)="irParaCardapio()">
+        <p>GERENCIAR CARDÁPIO</p>
+        <img src="https://cdn.goomer.com.br/website/base/b53/4ba/682/goomer-pratos-do-dia-cardapio-restaurante-como-montar.jpg" alt="Gerenciar cardápio">
+      </button>
+
+      <button class="botao_cardapio" (click)="irParaPedidos()">
+        <p>GERENCIAR ENTREGAS</p>
+        <img src="https://blog.dipratos.com.br/wp-content/uploads/2021/08/como-montar-um-delivery-restaurante.jpg" alt="Gerenciar entregas">
+      </button>
+
+      <button class="botao_cardapio" (click)="irParaEntregadores()">
+        <p>GERENCIAR ENTREGADORES</p>
+        <img src="https://expopostos.com.br/wp-content/uploads/2021/11/PARCERIA-IFOOD-RAIZEN.jpg" alt="Gerenciar entregadores">
+      </button>
+
+      <button class="botao_cardapio" (click)="irParaTodosOsPedidos()">
+        <p>GERENCIAR PEDIDOS</p>
+        <img src="https://www.expohorecamagazine.com/uploads/fotos_noticias/2020/06/22150-174608-los-espanoles-piden-un-delivery-mas-sostenible.jpg" alt="Gerenciar pedidos">
+      </button>
+    </div>
+  </section>
 </section>

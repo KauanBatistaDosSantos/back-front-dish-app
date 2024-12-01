@@ -1,33 +1,33 @@
 <section id="corpo">
     <header>
         <button id="botao-seta-voltar" (click)="voltar()"><mat-icon>arrow_back_ios</mat-icon></button>
+        <h1>CARDÁPIO</h1>
     </header>
 
-    <section id="cardapio">
-        <h1>CARDÁPIO</h1>
-        <div id="botoes">
+    <section>
+        <div class="cardapio">
           <button 
-            id="botao" 
+            class="botao_cardapio"
             *ngIf="categoriasDisponiveis['executivos']"
             (click)="irParaExecutivo()">
-            <h1>Executivos</h1>
-            <img src="https://chacaravissale.com.br/wp-content/uploads/2024/02/PF-DIVERSOS_.jpg" alt="icone-executivos">
+            <p>EXECUTIVOS</p>
+            <img src="https://raizesdocampo.com.br/wp-content/uploads/2024/02/prato-feito-hora-do-almoco.png" alt="prato de comida">
           </button>
     
           <button 
-            id="botao" 
+            class="botao_cardapio"
             *ngIf="categoriasDisponiveis['bebidas']"
             (click)="irParaBebidas()">
-            <h1>Bebidas</h1>
-            <img src="https://horasagradamc.meucatalogofacil.com/_core/_uploads/14/2020/11/111328112016gk25fh0h.jpeg" alt="icone-bebidas">
+            <p>BEBIDAS</p>
+            <img src="https://blog.letskuk.com.br/wp-content/uploads/2022/12/diversas-bebidas-alcoolicas-1561478236147_v2_4x3.jpg" alt="prato de comida">
           </button>
     
           <button 
-            id="botao" 
+            class="botao_cardapio"
             *ngIf="categoriasDisponiveis['porcoes']"
             (click)="irParaPorcoes()">
-            <h1>Porções</h1>
-            <img src="https://cdn.awsli.com.br/2500x2500/1209/1209015/produto/289024921/f2c-mcp28hq2ko.png" alt="icone-porcoes">
+            <p>PORÇÕES</p>
+            <img src="https://cdn.prod.website-files.com/5edf7b44b7a4f6000913a233/64b1985e271c0bf2f3691586_Porcoes_.webp" alt="prato de comida">
           </button>
         </div>
     

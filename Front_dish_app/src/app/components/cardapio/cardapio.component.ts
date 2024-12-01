@@ -37,21 +37,22 @@ export class CardapioComponent implements OnInit {
   ngOnInit() {
     this.verificarCategoriasAtivas();
 
-    // Atualizar a quantidade de itens no carrinho
     this.totalItens = this.carrinhoService.getCartItems().length;
   }
 
   verificarCategoriasAtivas() {
     const categorias = Object.keys(this.categoriasDisponiveis);
-
-    categorias.forEach(categoria => {
+  
+    categorias.forEach((categoria) => {
       this.dishService.getDishesByCategory(categoria).subscribe(
         (dishes) => {
-          // Marca a categoria como disponível se houver pratos ativos
-          this.categoriasDisponiveis[categoria] = dishes && dishes.length > 0;
+          const pratosAtivos = dishes.filter((dish) => dish.stock > 0);
+          this.categoriasDisponiveis[categoria] = pratosAtivos.length > 0;
+          console.log(`Categoria ${categoria} disponível:`, this.categoriasDisponiveis[categoria]);
         },
         (error) => {
           console.error(`Erro ao carregar a categoria ${categoria}:`, error);
+          this.categoriasDisponiveis[categoria] = false;
         }
       );
     });

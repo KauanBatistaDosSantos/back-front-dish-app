@@ -1,81 +1,114 @@
-body {
-    background-color: var(--fundo-telas);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    font-family: "Mulish", sans-serif;
-    color: #ffffff;
-    height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&display=swap');
+
+#corpo {
     margin: 0;
     padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 header {
     width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.gerencia-container {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    padding: 20px 0;
+    z-index: 10;
+    position: relative;
+    margin-top: 60px;
 }
 
-.botao-gerencia {
-    align-items: center;
-    background-color: transparent;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.5;
-    outline: 0;
-    border: 0;
-    padding: 1rem;
-}
-
-
-.botao-gerencia:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.5);
+header h1 {
+    color: #fff;        
+    font-family: "Edu AU VIC WA NT Pre", cursive;
+    font-size: 65px;
+    margin: 0;
+    text-align: center;
 }
 
 #botao-seta-voltar {
     position: absolute;
     left: 28px;
-    background-color: var(--fundo-telas);
+    top: 50%;
+    transform: translateY(-200%);
+    background-color: transparent;
     border: none;
-    padding-top: 25px;
-    color: #ffffff;
+    color: #fff;
     cursor: pointer;
 }
 
-body h1 {
-    font-size: 30px;
-    font-family: Mulish, sans-serif;
-    font-weight: 700;
-    margin-top: 60px;
-    text-align: center;
+.gerencia-container {
+    max-width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 20px;
+    flex-direction: column;
 }
 
-.botao-gerencia:before {
-    background-color: #fff;
-    content: "";
-    display: inline-block;
-    height: 1px;
-    margin-right: 10px;
-    transition: all .42s cubic-bezier(.25,.8,.25,1);
-    width: 0;
+.botao_cardapio {
+    font-family: "Edu AU VIC WA NT Pre", cursive;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0px 0px 30px rgba(277, 228, 237, 0.37);
+    border: 3px groove rgba(255, 255, 255, 0.18);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 40px;
+    margin: 0;
+    gap: 10px;
 }
-  
-.botao-gerencia:hover:before {
-    background-color: #fff;
-    width: 3rem;
+
+.botao_cardapio:hover {
+    background-color: #dddddd5b;
+    transition: cubic-bezier();
+    transition-duration: 0.3s;
+    zoom: 105%;
+}
+
+.botao_cardapio img {
+    border: 10px ridge rgba(179, 51, 0, 0.342);
+    width: auto;
+    height: 100px;
+    max-width: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.botao_cardapio p {
+    font-size: 35px;
+    flex: 1;
+    text-align: left;
+    margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    header h1 {
+        font-size: 35px;
+    }
+
+    .botao_cardapio {
+        max-width: 400px;
+        font-size: 25px;
+        padding: 10px;
+    }
+
+    .botao_cardapio img {
+        border: 5px ridge rgba(179, 51, 0, 0.342);
+        height: 80px;
+        max-width: 100px;
+    }
+
+    .botao_cardapio p {
+        font-size: 20px;
+    }
 }

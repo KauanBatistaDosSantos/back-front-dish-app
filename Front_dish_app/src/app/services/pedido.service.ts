@@ -96,17 +96,9 @@ export class PedidoService {
   
   getPedidoMaisAntigoParaEntregador(entregadorId: number): Observable<any | null> {
     return this.getPedidosPorEntregador(entregadorId).pipe(
-      map((pedidos) => (pedidos.length ? pedidos[0] : null)) // O mais antigo já será o primeiro
+      map((pedidos) => (pedidos.length ? pedidos[0] : null))
     );
   }
-
-  // finalizarPedido(id: number): Observable<any> {
-  //   return this.http.patch(`${this.apiUrl}/${id}`, { status: 'pedido finalizado' }).pipe(
-  //     map(() => {
-  //       this.pedidosAtualizados.next();
-  //     })
-  //   );
-  // }
 
   finalizarPedidoCliente(id: number): Observable<any> {
     return this.http.patch(`${this.apiUrl}/${id}`, { status: 'aguardando confirmação do entregador' }).pipe(
@@ -118,10 +110,11 @@ export class PedidoService {
   
   finalizarPedidoEntregador(id: number): Observable<any> {
     return this.http.patch(`${this.apiUrl}/${id}/status`, null, {
-      params: { status: 'pedido finalizado' }
+      params: { status: 'pedido finalizado' },
     }).pipe(
-      map(() => {
-        this.pedidosAtualizados.next();
+      map((response) => {
+        this.pedidosAtualizados.next(); // Notifica os observadores da atualização
+        return response;
       })
     );
   }
