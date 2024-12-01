@@ -20,6 +20,12 @@ export class CardapioComponent implements OnInit {
   loading = true;
   totalItens: number = 0;
 
+  categoriasDisponiveis: { [categoria: string]: boolean } = {
+    executivos: false,
+    bebidas: false,
+    porcoes: false
+  };
+
   constructor(
     private dishService: DishService, 
     private router: Router, 
@@ -29,11 +35,26 @@ export class CardapioComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dishService.getDishesByCategory('porções').subscribe(data => {
-      this.dishes = data; 
-    });
+    this.verificarCategoriasAtivas();
 
+    // Atualizar a quantidade de itens no carrinho
     this.totalItens = this.carrinhoService.getCartItems().length;
+  }
+
+  verificarCategoriasAtivas() {
+    const categorias = Object.keys(this.categoriasDisponiveis);
+
+    categorias.forEach(categoria => {
+      this.dishService.getDishesByCategory(categoria).subscribe(
+        (dishes) => {
+          // Marca a categoria como disponível se houver pratos ativos
+          this.categoriasDisponiveis[categoria] = dishes && dishes.length > 0;
+        },
+        (error) => {
+          console.error(`Erro ao carregar a categoria ${categoria}:`, error);
+        }
+      );
+    });
   }
 
   irParaExecutivo() {

@@ -36,7 +36,6 @@ export class DishListComponent implements OnInit {
   filterDishes() {
     const categoria = this.filtroCategoria;
 
-    // Filtros aplicados em ativos e inativos separadamente
     this.activeDishes = this.dishes.filter(
       (dish) => dish.stock === 1 && (!categoria || dish.category === categoria)
     );

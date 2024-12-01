@@ -52,7 +52,15 @@
     <div id="observacao">
       <h3>Observação no pedido?</h3>
       <form>
-        <textarea class="forms-observacao" placeholder="Digite aqui" [(ngModel)]="observacao" name="observacao" (input)="ajustarAltura($event)"></textarea>
+        <textarea 
+          class="forms-observacao" 
+          placeholder="Digite aqui" 
+          [(ngModel)]="observacao" 
+          name="observacao" 
+          maxlength="280" 
+          (input)="ajustarAltura($event)">
+        </textarea>
+        <p>{{ observacao.length }} / 280</p>
       </form>
     </div>
 

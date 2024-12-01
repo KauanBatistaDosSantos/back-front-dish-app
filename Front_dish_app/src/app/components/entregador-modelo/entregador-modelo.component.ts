@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { EntregadorService, Entregador } from '../../services/entregador.service';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { CpfUtils } from '../cpf-utils';
 
 @Component({
   selector: 'app-entregador-modelo',
@@ -21,6 +22,10 @@ export class EntregadorModeloComponent {
     private entregadorService: EntregadorService,
     private router: Router,
   ) {}
+
+  get cpfFormatado(): string {
+    return CpfUtils.formatarCpf(this.entregador.cpf);
+  }
 
   editar(entregadorId?: number) {
     if (entregadorId !== undefined) {

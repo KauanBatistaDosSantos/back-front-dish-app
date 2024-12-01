@@ -7,7 +7,27 @@
     </header>
 
     <h1>Entregadores</h1>
-  
+    
+    <div class="opcoes">
+      <ul class="opcoes-botoes">
+        <button 
+          (click)="aplicarFiltro(null)" 
+          [ngClass]="{'ativo': filtroCategoria === null}">
+          Todos
+        </button>
+        <button 
+          (click)="aplicarFiltro(1)" 
+          [ngClass]="{'ativo': filtroCategoria === 1}">
+          Disponíveis
+        </button>
+        <button 
+          (click)="aplicarFiltro(0)" 
+          [ngClass]="{'ativo': filtroCategoria === 0}">
+          Indisponíveis
+        </button>
+      </ul>
+    </div>
+
     <div class="entregadores" *ngIf="entregadores.length > 0; else semEntregadores">
       <app-entregador-modelo
         *ngFor="let entregador of entregadores"

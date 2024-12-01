@@ -92,6 +92,7 @@ main {
 .mulish-fonte {
     font-family: "Mulish", sans-serif;
     font-weight: 700;
+    padding-top: 16px;
 }
 
 .dish-descricao {

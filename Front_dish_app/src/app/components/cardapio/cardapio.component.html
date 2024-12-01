@@ -6,27 +6,36 @@
     <section id="cardapio">
         <h1>CARDÁPIO</h1>
         <div id="botoes">
-            <button id="botao" (click)="irParaExecutivo()">
-                <h1>Executivos</h1>
-                <img src="https://chacaravissale.com.br/wp-content/uploads/2024/02/PF-DIVERSOS_.jpg" alt="icone-executivos">
-            </button>
+          <button 
+            id="botao" 
+            *ngIf="categoriasDisponiveis['executivos']"
+            (click)="irParaExecutivo()">
+            <h1>Executivos</h1>
+            <img src="https://chacaravissale.com.br/wp-content/uploads/2024/02/PF-DIVERSOS_.jpg" alt="icone-executivos">
+          </button>
     
-            <button id="botao" (click)="irParaBebidas()">
-                <h1>Bebidas</h1>
-                <img src="https://horasagradamc.meucatalogofacil.com/_core/_uploads/14/2020/11/111328112016gk25fh0h.jpeg" alt="icone-bebidas">
-            </button>
+          <button 
+            id="botao" 
+            *ngIf="categoriasDisponiveis['bebidas']"
+            (click)="irParaBebidas()">
+            <h1>Bebidas</h1>
+            <img src="https://horasagradamc.meucatalogofacil.com/_core/_uploads/14/2020/11/111328112016gk25fh0h.jpeg" alt="icone-bebidas">
+          </button>
     
-            <button id="botao" (click)="irParaPorcoes()">
-                <h1>Porções</h1>
-                <img src="https://cdn.awsli.com.br/2500x2500/1209/1209015/produto/289024921/f2c-mcp28hq2ko.png" alt="icone-porcoes">
-            </button>
+          <button 
+            id="botao" 
+            *ngIf="categoriasDisponiveis['porcoes']"
+            (click)="irParaPorcoes()">
+            <h1>Porções</h1>
+            <img src="https://cdn.awsli.com.br/2500x2500/1209/1209015/produto/289024921/f2c-mcp28hq2ko.png" alt="icone-porcoes">
+          </button>
         </div>
-
+    
         <footer class="carrinho" (click)="irParaCarrinho()">
-            <button id="botao-carrinho">
-                <span>Carrinho</span>
-                <mat-icon matBadge="{{ totalItens }}" matBadgeColor="accent" matBadgeOverlap="false">shopping_cart</mat-icon>
-            </button>
+          <button id="botao-carrinho">
+            <span>Carrinho</span>
+            <mat-icon matBadge="{{ totalItens }}" matBadgeColor="accent" matBadgeOverlap="false">shopping_cart</mat-icon>
+          </button>
         </footer>
     </section>
 </section>

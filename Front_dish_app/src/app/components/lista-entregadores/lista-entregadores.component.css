@@ -1,7 +1,7 @@
 header {
     display: flex;
-    justify-content: space-between; /* Espaça os botões adequadamente */
-    align-items: center; /* Centraliza verticalmente os botões */
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding: 16px 24px;
     box-sizing: border-box;
@@ -56,4 +56,40 @@ h1 {
     padding: 41px 15px 0 19px;
     gap: 13px;
     justify-content: center;
+}
+
+p {
+    margin-top: 20px;
+    text-align: center;
+    color: honeydew;
+}
+
+.opcoes-botoes {
+    gap: 5px;
+    justify-content: center;
+    display: flex;
+}
+
+.opcoes-botoes button {
+    padding: 10px 15px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.opcoes-botoes button:hover {
+    background-color: #ddd;
+}
+
+.opcoes-botoes button.ativo {
+    background-color: var(--laranja-figma);
+    color: #fff;
+    border-color: var(--laranja-figma);
+    /* font-weight: bold; */
+    padding: 10px 15px;
 }

@@ -52,4 +52,11 @@ export class EntregadorService {
   getEntregadorById(id: number): Observable<Entregador> {
     return this.http.get<Entregador>(`${this.apiUrl}/${id}`);
   }
+
+  checkCpfExists(cpf: string, id?: number): Observable<boolean> {
+    let params: any = { cpf };
+    if (id) params.id = id;
+  
+    return this.http.get<boolean>(`${this.apiUrl}/check-cpf`, { params });
+  }
 }

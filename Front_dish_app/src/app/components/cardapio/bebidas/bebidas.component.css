@@ -93,6 +93,7 @@ body {
 .mulish-fonte {
     font-family: "Mulish", sans-serif;
     font-weight: 700;
+    padding-top: 16px;
 }
 
 .dish-descricao {
@@ -157,6 +158,7 @@ footer.carrinho mat-icon {
     border: none;
     padding-top: 25px;
     color: #ffffff;
+    cursor: pointer;
 }
 
 @media (min-width: 768px) {

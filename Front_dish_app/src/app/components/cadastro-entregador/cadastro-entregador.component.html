@@ -1,17 +1,18 @@
 <section>
     <header>
         <button id="botao-seta-voltar" (click)="voltar()"><mat-icon>arrow_back_ios</mat-icon></button>
+        <h2>Cadastro Entregador</h2>
     </header>
   
   <body id="cpf-entregador">
-    <h1>Insira o nome do entregador:</h1>
+    <h1>Nome:</h1>
     <input 
       id="campo-cpf" 
       type="text" 
       [(ngModel)]="nome" 
       placeholder="Digite o Nome" />
   
-    <h1>Insira o CPF do entregador:</h1>
+    <h1>CPF:</h1>
     <input 
       id="campo-cpf" 
       type="text" 
@@ -19,7 +20,7 @@
       placeholder="Digite o CPF" 
       (keyup)="formatarCpf()" />
   
-    <h1>Defina a disponibilidade do entregador:</h1>
+    <h1>Disponibilidade:</h1>
     <div class="toggle-container">
       <button 
         class="toggle-button" 
@@ -38,8 +39,8 @@
     <button 
       id="button"
       (click)="cadastrarEntregador()" 
-      [disabled]="!validarCpf(cpf)" 
-      [class.clicavel]="validarCpf(cpf)">
+      [disabled]="!validarCpf()" 
+      [class.clicavel]="validarCpf()">
       {{ isEditMode ? 'Atualizar' : 'Cadastrar' }}
     </button>
     

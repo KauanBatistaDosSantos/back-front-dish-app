@@ -166,8 +166,8 @@ export class TelaClienteFinalizarPedidoComponent implements OnInit {
     const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
-
-    this.observacao = textarea.value;
+  
+    this.observacao = textarea.value.slice(0, 280);
     localStorage.setItem('observacaoCliente', this.observacao);
   }
 
