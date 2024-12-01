@@ -60,4 +60,12 @@ public class MotoboyController {
             return ResponseEntity.status(500).body("Erro ao excluir o motoboy: " + e.getMessage());
         }
     }
+
+    @GetMapping("/check-cpf")
+    public ResponseEntity<Boolean> checkCpf(@RequestParam String cpf, @RequestParam(required = false) Long id) {
+        Optional<Motoboy> motoboyExistente = motoboyService.findByCpf(cpf);
+        boolean exists = motoboyExistente.isPresent() &&
+                (id == null || !motoboyExistente.get().getId().equals(id));
+        return ResponseEntity.ok(exists);
+    }
 }
