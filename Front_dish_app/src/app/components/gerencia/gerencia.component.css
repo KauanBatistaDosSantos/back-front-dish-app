@@ -22,7 +22,7 @@ header {
 
 header h1 {
     color: #fff;        
-    font-family: "Edu AU VIC WA NT Pre", cursive;
+    /* font-family: "Edu AU VIC WA NT Pre", cursive; */
     font-size: 65px;
     margin: 0;
     text-align: center;
@@ -50,7 +50,7 @@ header h1 {
 }
 
 .botao_cardapio {
-    font-family: "Edu AU VIC WA NT Pre", cursive;
+    /* font-family: "Edu AU VIC WA NT Pre", cursive; */
     max-width: 800px;
     width: 100%;
     box-shadow: 0px 0px 30px rgba(277, 228, 237, 0.37);

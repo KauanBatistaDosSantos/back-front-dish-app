@@ -20,7 +20,7 @@ html, .body {
     justify-content: flex-start;
     align-items: center;
     font-family: "Mulish", sans-serif;
-    color: #ffffff;
+    color: black;
     min-height: 100%;
     max-width: 600px;
     margin: auto;
@@ -106,7 +106,7 @@ ul {
     border-radius: 8px;
     cursor: pointer;
     box-sizing: border-box;
-    background: var(--laranja-figma);
+    background: #f9f9f9;
     transition: background-color 0.3s ease;
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
                 0 0 0 2px rgb(190, 190, 190),
@@ -114,8 +114,8 @@ ul {
 }
 
 .pedido-item:hover {
-    background-color: #f9f9f9;
-    color: black;
+    background-color: var(--laranja-figma);
+    color: white;
 }
   
 p {

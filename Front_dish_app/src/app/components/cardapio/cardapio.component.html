@@ -1,7 +1,7 @@
 <section id="corpo">
     <header>
         <button id="botao-seta-voltar" (click)="voltar()"><mat-icon>arrow_back_ios</mat-icon></button>
-        <h1>CARDÁPIO</h1>
+        <h1>Cardápio</h1>
     </header>
 
     <section>
@@ -10,7 +10,7 @@
             class="botao_cardapio"
             *ngIf="categoriasDisponiveis['executivos']"
             (click)="irParaExecutivo()">
-            <p>EXECUTIVOS</p>
+            <p>Executivos</p>
             <img src="https://raizesdocampo.com.br/wp-content/uploads/2024/02/prato-feito-hora-do-almoco.png" alt="prato de comida">
           </button>
     
@@ -18,7 +18,7 @@
             class="botao_cardapio"
             *ngIf="categoriasDisponiveis['bebidas']"
             (click)="irParaBebidas()">
-            <p>BEBIDAS</p>
+            <p>Bebidas</p>
             <img src="https://blog.letskuk.com.br/wp-content/uploads/2022/12/diversas-bebidas-alcoolicas-1561478236147_v2_4x3.jpg" alt="prato de comida">
           </button>
     
@@ -26,7 +26,7 @@
             class="botao_cardapio"
             *ngIf="categoriasDisponiveis['porcoes']"
             (click)="irParaPorcoes()">
-            <p>PORÇÕES</p>
+            <p>Porções</p>
             <img src="https://cdn.prod.website-files.com/5edf7b44b7a4f6000913a233/64b1985e271c0bf2f3691586_Porcoes_.webp" alt="prato de comida">
           </button>
         </div>

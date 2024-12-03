@@ -1,6 +1,11 @@
 <section class="pedido-container">
     <header>
-        <button id="botao-voltar" (click)="voltar()"><mat-icon>arrow_back_ios</mat-icon></button>
+     <button 
+          *ngIf="statusAtual === 'pedido finalizado'" 
+          id="botao-voltar" 
+          (click)="voltar()">
+          <mat-icon>arrow_back_ios</mat-icon>
+     </button>
         <h1>Acompanhe o seu pedido</h1>
     </header>
 

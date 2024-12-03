@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--laranja-figma);
+    /* background-color: var(--laranja-figma); */
     padding: 20px 60px 20px 60px;
     border-radius: 8px;
 }

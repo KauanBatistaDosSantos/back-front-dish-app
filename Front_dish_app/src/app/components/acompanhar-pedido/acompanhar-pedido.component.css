@@ -57,15 +57,15 @@ h1 {
 }
 
 .completed {
-    background-color: #00ff1e; /* Verde para indicar completado */
+    background-color: #00ff1e;
 }
 
 .status-text {
-    color: red;
-    font-size: 14px;
+    color: var(--laranja-figma);
+    font-size: 20px;
     margin-top: 10px;
 }
 
 .status-text.finalizado {
-    color: #00ff1e; /* Verde para o texto quando finalizado */
+    color: #00ff1e;
 }

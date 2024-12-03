@@ -122,12 +122,13 @@ export class EntregaRecebidaComponent {
   }
 
   abrirRota() {
-    if (this.pedido?.endereco) {
-      const enderecoFormatado = encodeURIComponent(this.pedido.endereco);
-      const url = `https://www.google.com/maps/dir/?api=1&destination=${enderecoFormatado}`;
-      window.open(url, '_blank');
+    if (this.pedido?.cliente?.endereco) {
+        console.log('Endereço:', this.pedido.cliente.endereco);
+        const enderecoFormatado = encodeURIComponent(this.pedido.cliente.endereco);
+        const url = `https://www.google.com/maps/dir/?api=1&destination=${enderecoFormatado}`;
+        window.open(url, '_blank');
     } else {
-      console.error('Endereço não disponível para o pedido.');
+        console.error('Endereço não disponível para o pedido.');
     }
-  }
+}
 }
